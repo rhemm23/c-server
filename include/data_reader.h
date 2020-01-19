@@ -1,6 +1,8 @@
 #pragma once
 #define DATA_READER_H
 
+#include <string>
+
 namespace Server {
 
   /**
@@ -9,11 +11,7 @@ namespace Server {
   class DataReader {
     public:
       virtual bool read();
-      
-      template<typename T>
-      virtual T &operator[](int index);
-
-      template<typename T>
-      virtual T &operator[](std::string field_name);
+      virtual std::string &operator[](int);
+      virtual std::string &operator[](std::string);
   };
 }

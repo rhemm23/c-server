@@ -1,6 +1,7 @@
 #pragma once
 #define PSQL_READER_H
 
+#include <string>
 #include <pqxx/pqxx>
 
 #include "data_reader.h"
@@ -12,16 +13,15 @@ namespace Server {
    */
   class PSQLReader : public DataReader {
     private:
-      pqxx::result::const_iterator it;
+      pqxx::result result;
+      pqxx::result::const_iterator iterator;
 
     public:
       // Access by field name
-      template<typename T>
-      T &operator[](std::string field_name);
+      std::string &operator[](std::string) override;
 
       // Access by column index
-      template<typename T>
-      T &operator[](int index);
+      std::string &operator[](int) override;
 
       bool read() override;
       PSQLReader(pqxx::result result);

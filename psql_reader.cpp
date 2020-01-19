@@ -1,29 +1,30 @@
+#include <cstring>
+
 #include "include/psql_reader.h"
 
 /**
  * Get data at column field name
  */
-template<typename T>
-T &operator[](std::string field_name) {
-  return it[field_name];
+std::string &Server::PSQLReader::operator[](std::string field_name) {
+  std::string res(this->iterator[field_name].c_str());
+  return res;
 }
 
 /**
  * Get data at column index
  */
-template<typename T>
-T &operator[](int index) {
-  return it[index];
+std::string &Server::PSQLReader::operator[](int index) {
+  return (std::string)strdup(iterator[index].c_str());
 }
 
 /**
  * Increments the result iterator
  */
 bool Server::PSQLReader::read() {
-  if(this->it == this->result.end()) {
+  if(this->iterator == this->result.end()) {
     return false;
   } else {
-    this->it++;
+    this->iterator++;
     return true;
   }
 }
