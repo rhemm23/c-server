@@ -1,6 +1,9 @@
 #pragma once
 #define TABLE_H
 
+#include <vector>
+#include <string>
+
 #include "column.h"
 
 namespace Server {
@@ -9,9 +12,8 @@ namespace Server {
    * Represents a database table
    */
   struct Table {
-    char *schema;
-    char *name;
-    int ncolumns;
-    Column **columns;
+    std::string schema;
+    std::string name;
+    std::vector<Column*> columns;
   };
 }

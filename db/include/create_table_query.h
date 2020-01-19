@@ -14,8 +14,8 @@ namespace Server {
       Table *table;
 
     public:
-      char *get_up_sql() override;
-      char *get_down_sql() override;
+      std::string get_up_sql() override;
+      std::string get_down_sql() override;
       CreateTableQuery(Table *table);
   };
 }

@@ -1,6 +1,8 @@
 #pragma once
 #define QUERY_H
 
+#include <string>
+
 namespace Server {
 
   /**
@@ -9,7 +11,7 @@ namespace Server {
    */
   class StructureQuery {
     public:
-      virtual char *get_up_sql();
-      virtual char *get_down_sql();
+      virtual std::string get_up_sql();
+      virtual std::string get_down_sql();
   };
 }

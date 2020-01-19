@@ -1,6 +1,11 @@
 #pragma once
 #define MIGRATOR_H
 
+#include <map>
+#include <vector>
+
+#include "migration.h"
+
 #include "../../include/db_conn.h"
 
 namespace Server {
@@ -10,9 +15,13 @@ namespace Server {
    */
   class Migrator {
     private:
-      DbConnection *conn;
+      void setup();
+      DbConnection *conn; 
+      std::vector<Migration*> migrations;
+      std::map<std::string, std::string> statuses;
 
     public:
-      Migrator(DbConnection *conn);
+      void update();
+      Migrator(DbConnection *conn, std::vector<Migration*> migrations);
   };
 }

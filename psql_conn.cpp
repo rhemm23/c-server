@@ -20,6 +20,7 @@ int Server::PSQLConnection::execute_sql(char *sql) {
  * Destroys the postgresql connection
  */
 Server::PSQLConnection::~PSQLConnection() {
+  this->conn.disconnect();
   delete this->conn;
 }
 

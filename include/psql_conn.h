@@ -20,6 +20,6 @@ namespace Server {
       PSQLConnection(pqxx::connection *conn, Server::DbConnectionConfig *config); 
       ~PSQLConnection();
 
-      int execute_sql(char *sql) override;
+      int execute_sql(std::string sql) override;
   };
 }

@@ -1,16 +1,19 @@
 #pragma once
 #define COLUMN_H
 
+#include <string>
+
 namespace Server {
 
   /**
    * Represents a database table column
    */
   struct Column {
-    char *name;
+    bool unique;
     bool not_null;
-    char *data_type;
     bool primary_key;
-    char *references;
+    std::string name;
+    std::string data_type;
+    std::string references;
   };
 }

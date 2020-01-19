@@ -13,20 +13,14 @@ namespace Server {
    */
   class Config {
     private:
-      struct CompareKey {
-        bool operator()(char const *a, char const *b) const {
-          return strcmp(a, b) < 0;
-        }
-      };
-
       void read(FILE *file);
-      std::map<char*, char*, CompareKey> *entries;
+      std::map<std::string, std::string> entries;
 
     public:
-      Config(FILE *file);
-      Config(char *path);
+      Config(std::string path);
       ~Config();
 
-      char *get_value(char *key);
+      std::string &operator[] (std::string);
+      std::string get_value(std::string key);
   };
 }

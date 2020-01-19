@@ -1,7 +1,7 @@
 #pragma once
 #define DB_CONN_H
 
-#include <inttypes.h>
+#include <string>
 
 namespace Server {
   
@@ -10,11 +10,11 @@ namespace Server {
    * connection
    */
   struct DbConnectionConfig {
-    uint16_t port;
-    char *db_name;
-    char *username;
-    char *password;
-    char *host_addr;
+    std::string port;
+    std::string db_name;
+    std::string username;
+    std::string password;
+    std::string host_addr;
   };
 
   /**
@@ -22,7 +22,8 @@ namespace Server {
    */
   class DbConnection {
     public:
-      virtual int execute_sql(char *sql);
+      virtual DataReader *execute_reader(std::string sql);
+      virtual int execute_sql(std::string sql);
   };
 
   /**

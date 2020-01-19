@@ -4,19 +4,12 @@
  * Initializes a config object from
  * a file path
  */
-Server::Config::Config(char *path) {
+Server::Config::Config(std::string path) {
   FILE *file;
-  if((file = fopen(path, "r")) != NULL) {
+  if((file = fopen(path.c_str(), "r")) != NULL) {
     read(file);
     fclose(file);
   }
-}
-
-/**
- * Destroys a config object
- */
-Server::Config::~Config() {
-  delete this->entries;
 }
 
 /**
@@ -31,7 +24,7 @@ void Server::Config::read(FILE *file) {
     if((tok = strtok(line, "=")) != NULL) {
       char *key = tok;
       if((tok = strtok(NULL, "=")) != NULL) {
-        (*this->entries)[key] = tok;
+        this->entries[key] = tok;
       }
     }
   }
@@ -41,6 +34,14 @@ void Server::Config::read(FILE *file) {
  * Returns the value associated with
  * a specific key
  */
-char *Server::Config::get_value(char *key) {
-  return (*this->entries)[key];
+std::string Server::Config::get_value(std::string key) {
+  return this->entries[key];
+}
+
+/**
+ * Indexer override, returns the value associated
+ * with the passed key value
+ */
+std::string &Server::Config::operator[](std::string key) {
+  return this->entries[key];
 }

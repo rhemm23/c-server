@@ -18,8 +18,11 @@ namespace Server {
       /**
        * Column attributes
        */
-      Column *NOT_NULL(Column *column);
-      Column *PRIMARY_KEY(Column *column);
+      Column *unique(Column *column);
+      Column *not_null(Column *column);
+      Column *primary_key(Column *column);  
+      Column *column(std::string name, std::string data_type);
+      Column *references(Column *column, std::string references);
 
       /**
        * Structure queries
@@ -29,7 +32,7 @@ namespace Server {
     public:
       void up();
       void down();
-      virtual char *get_id();
-      virtual StructureQuery **get_queries();
+      virtual std::string get_id();
+      virtual std::vector<StructureQuery*> get_queries();
   };
 }
