@@ -1,6 +1,8 @@
 #pragma once
 #define DB_CONN_H
 
+#include <inttypes.h>
+
 namespace Server {
   
   /**
@@ -29,6 +31,6 @@ namespace Server {
    */
   class DbConnectionFactory {
     public:
-      static DbConnection connect_to_psql(DbConnectionConfig *config);
+      static DbConnection *connect_to_psql(DbConnectionConfig *config);
   };
 }

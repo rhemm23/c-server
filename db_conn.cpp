@@ -1,3 +1,7 @@
+#include <pqxx/pqxx>
+
+#include "include/psql_conn.h"
+
 #include "include/db_conn.h"
 
 /**

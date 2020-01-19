@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 #include "include/migration.h"
 
 /**
@@ -14,8 +16,8 @@ void Server::Migration::execute_sql(char *sql) {
  */
 char *Server::Migration::VARCHAR2(uint8_t size) {
   const char* const SQL = "VARCHAR2(%hhu)";
-  char *res = new char[14];
-  sprintf(res, SQL, size);
+  char *res;
+  asprintf(&res, SQL, size);
   return res;
 }
 
@@ -25,8 +27,8 @@ char *Server::Migration::VARCHAR2(uint8_t size) {
  */
 char *Server::Migration::PRIMARY_KEY(char *column) {
   const char* const SQL = "%s PRIMARY KEY";
-  char *res = new char[strlen(column) + 13];
-  sprintf(res, SQL, column);
+  char *res;
+  asprintf(&res, SQL, column);
   free(column);
   return res;
 }
@@ -37,8 +39,8 @@ char *Server::Migration::PRIMARY_KEY(char *column) {
  */
 char *Server::Migration::NOT_NULL(char *column) {
   const char* const SQL = "%s NOT NULL";
-  char *res = new char[strlen(column) + 10];
-  sprintf(res, SQL, column);
+  char *res;
+  asprintf(&res, SQL, column);
   free(column);
   return res;
 }

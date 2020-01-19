@@ -15,6 +15,7 @@ namespace Server {
       void execute_sql(char *sql);
       char *NOT_NULL(char *column);
       char *VARCHAR2(uint8_t size);
+      char *PRIMARY_KEY(char *column);
       void create_table(char *schema, char *name, char *columns[]);
 
     public:
