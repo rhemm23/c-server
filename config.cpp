@@ -8,15 +8,15 @@ Server::Config::Config(char *path) {
   FILE *file;
   if((file = fopen(path, "r")) != NULL) {
     read(file);
+    fclose(file);
   }
 }
 
 /**
- * Initializes a config object from
- * an open file stream
+ * Destroys a config object
  */
-Server::Config::Config(FILE *file) {
-  read(file);
+Server::Config::~Config() {
+  delete this->entries;
 }
 
 /**

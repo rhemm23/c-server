@@ -17,7 +17,9 @@ namespace Server {
       pqxx::connection *conn;
 
     public:
-      PSQLConnection(pqxx::connection *conn, Server::DbConnectionConfig *config);
+      PSQLConnection(pqxx::connection *conn, Server::DbConnectionConfig *config); 
+      ~PSQLConnection();
+
       int execute_sql(char *sql) override;
   };
 }

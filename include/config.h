@@ -25,6 +25,7 @@ namespace Server {
     public:
       Config(FILE *file);
       Config(char *path);
+      ~Config();
 
       char *get_value(char *key);
   };

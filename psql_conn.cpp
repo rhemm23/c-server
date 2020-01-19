@@ -17,6 +17,13 @@ int Server::PSQLConnection::execute_sql(char *sql) {
 }
 
 /**
+ * Destroys the postgresql connection
+ */
+Server::PSQLConnection::~PSQLConnection() {
+  delete this->conn;
+}
+
+/**
  * Creates a new postgresql connection instance
  */
 Server::PSQLConnection::PSQLConnection(pqxx::connection *conn, Server::DbConnectionConfig *config) {
