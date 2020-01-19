@@ -17,6 +17,16 @@ int Server::PSQLConnection::execute_sql(char *sql) {
 }
 
 /**
+ * Executes a query and returns a data reader to read
+ * the results
+ */
+Server::DataReader *execute_reader(std::string sql) {
+  pqxx::nontransaction N(this->conn);
+  pqxx::result R(N.exec(sql));
+  return new PSQLReader(R);
+}
+
+/**
  * Destroys the postgresql connection
  */
 Server::PSQLConnection::~PSQLConnection() {

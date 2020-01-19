@@ -18,10 +18,10 @@ namespace Server {
 
     public:
       // Access by field name
-      std::string &operator[](std::string) override;
+      char* operator[](std::string) override;
 
       // Access by column index
-      std::string &operator[](int) override;
+      char* operator[](int) override;
 
       bool read() override;
       PSQLReader(pqxx::result result);

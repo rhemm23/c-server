@@ -5,16 +5,15 @@
 /**
  * Get data at column field name
  */
-std::string &Server::PSQLReader::operator[](std::string field_name) {
-  std::string res(this->iterator[field_name].c_str());
-  return res;
+char* Server::PSQLReader::operator[](std::string field_name) {
+  return strdup(this->iterator[field_name].c_str());
 }
 
 /**
  * Get data at column index
  */
-std::string &Server::PSQLReader::operator[](int index) {
-  return (std::string)strdup(iterator[index].c_str());
+char* Server::PSQLReader::operator[](int index) {
+  return strdup(iterator[index].c_str());
 }
 
 /**

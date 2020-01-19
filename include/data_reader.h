@@ -11,7 +11,7 @@ namespace Server {
   class DataReader {
     public:
       virtual bool read();
-      virtual std::string &operator[](int);
-      virtual std::string &operator[](std::string);
+      virtual char* operator[](int);
+      virtual char* operator[](std::string);
   };
 }
