@@ -2,21 +2,18 @@
 #define DATA_READER_H
 
 namespace Server {
-  
-  /**
-   * Represents a row of data
-   */
-  class Row {
-    public:
-      virtual int size();
-      virtual void *get_column(int index);
-  };
 
   /**
    * Reads the results of a select query
    */
   class DataReader {
     public:
-      virtual Row *next();
+      virtual bool read();
+      
+      template<typename T>
+      virtual T &operator[](int index);
+
+      template<typename T>
+      virtual T &operator[](std::string field_name);
   };
 }
