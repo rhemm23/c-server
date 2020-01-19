@@ -2,8 +2,11 @@
 #define MIGRATION_H
 
 #include <uuid/uuid.h>
-#include <inttypes.h>
 #include <stdio.h>
+
+#include "struct_query.h"
+#include "column.h"
+#include "table.h"
 
 namespace Server { 
 
@@ -12,15 +15,21 @@ namespace Server {
    */
   class Migration {
     protected:
-      char *NOT_NULL(char *column);
-      char *VARCHAR2(uint8_t size);
-      char *PRIMARY_KEY(char *column);
-      char *create_table(char *schema, char *name, char *columns[]);
+      /**
+       * Column attributes
+       */
+      Column *NOT_NULL(Column *column);
+      Column *PRIMARY_KEY(Column *column);
+
+      /**
+       * Structure queries
+       */
+      StructureQuery *create_table(Table *table);
 
     public:
       void up();
       void down();
       virtual char *get_id();
-      virtual char **get_queries();
+      virtual StructureQuery **get_queries();
   };
 }

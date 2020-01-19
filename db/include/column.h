@@ -8,7 +8,7 @@ namespace Server {
    */
   struct Column {
     char *name;
-    bool nullable;
+    bool not_null;
     char *data_type;
     bool primary_key;
     char *references;

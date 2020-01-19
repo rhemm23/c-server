@@ -1,54 +1,30 @@
 #include <stdlib.h>
 
+#include "include/create_table_query.h"
+
 #include "include/migration.h"
-
-/**
- * Runs a SQL query against the current
- * database connection
- */
-void Server::Migration::execute_sql(char *sql) {
-  
-}
-
-/**
- * Builds the SQL needed to declare a
- * varchar2 data column
- */
-char *Server::Migration::VARCHAR2(uint8_t size) {
-  const char* const SQL = "VARCHAR2(%hhu)";
-  char *res;
-  asprintf(&res, SQL, size);
-  return res;
-}
 
 /**
  * Adds the primary key constraint to a
  * table column
  */
-char *Server::Migration::PRIMARY_KEY(char *column) {
-  const char* const SQL = "%s PRIMARY KEY";
-  char *res;
-  asprintf(&res, SQL, column);
-  free(column);
-  return res;
+Server::Column *Server::Migration::PRIMARY_KEY(Server::Column *column) {
+  column->primary_key = true;
+  return column;
 }
 
 /**
- * Adds the not null constriant to a
+ * Adds the not null constraint to a
  * table column
  */
-char *Server::Migration::NOT_NULL(char *column) {
-  const char* const SQL = "%s NOT NULL";
-  char *res;
-  asprintf(&res, SQL, column);
-  free(column);
-  return res;
+Server::Column *Server::Migration::NOT_NULL(Server::Column *column) {
+  column->not_null = true;
+  return column;
 }
 
 /**
  * Creates a new database table
  */
-char *Server::Migration::create_table(char *schema, char *name, char *columns[]) {
-  const char* const SQL = "CREATE TABLE %s.%s (%s);";
-
+Server::StructureQuery *Server::Migration::create_table(Server::Table *table) {
+  return new Server::CreateTableQuery(table);
 }

@@ -30,7 +30,7 @@ char *Server::CreateTableQuery::get_up_sql() {
     Column *column = this->table->columns[i];
     sql << "\t" << column->name << " ";
     sql << column->data_type;
-    if(column->nullable) {
+    if(column->not_null) {
       sql << " NOT NULL";
     } else {
       sql << " NULL";
