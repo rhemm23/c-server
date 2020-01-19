@@ -12,15 +12,15 @@ namespace Server {
    */
   class Migration {
     protected:
-      void execute_sql(char *sql);
       char *NOT_NULL(char *column);
       char *VARCHAR2(uint8_t size);
       char *PRIMARY_KEY(char *column);
-      void create_table(char *schema, char *name, char *columns[]);
+      char *create_table(char *schema, char *name, char *columns[]);
 
     public:
-      virtual void up();
-      virtual void down();
-      virtual void get_id(uuid_t out);
+      void up();
+      void down();
+      virtual char *get_id();
+      virtual char **get_queries();
   };
 }

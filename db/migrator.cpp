@@ -1,5 +1,5 @@
 #include "include/migrator.h"
 
-Server::Migrator::Migrator(char *db_user, char *db_pass) {
-  
+Server::Migrator::Migrator(DbConnection *conn) {
+  this->conn = conn;
 }

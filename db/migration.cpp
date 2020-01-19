@@ -48,7 +48,7 @@ char *Server::Migration::NOT_NULL(char *column) {
 /**
  * Creates a new database table
  */
-void Server::Migration::create_table(char *schema, char *name, char *columns[]) {
+char *Server::Migration::create_table(char *schema, char *name, char *columns[]) {
   const char* const SQL = "CREATE TABLE %s.%s (%s);";
 
 }
