@@ -20,7 +20,7 @@ namespace Server {
       };
 
       void read(FILE *file);
-      std::map<char*, char*, CompareKey> entries;
+      std::map<char*, char*, CompareKey> *entries;
 
     public:
       Config(FILE *file);

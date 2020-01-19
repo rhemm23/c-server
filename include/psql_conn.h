@@ -13,11 +13,11 @@ namespace Server {
    */
   class PSQLConnection : public DbConnection {
     private:
-      DbConnectionConfig config;
-      pqxx::connection raw_conn;
+      DbConnectionConfig *config;
+      pqxx::connection *conn;
 
     public:
-      PSQLConnection(pqxx::connection conn, Server::DbConnectionConfig *config);
+      PSQLConnection(pqxx::connection *conn, Server::DbConnectionConfig *config);
       int execute_sql(char *sql) override;
   };
 }

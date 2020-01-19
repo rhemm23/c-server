@@ -31,7 +31,7 @@ void Server::Config::read(FILE *file) {
     if((tok = strtok(line, "=")) != NULL) {
       char *key = tok;
       if((tok = strtok(NULL, "=")) != NULL) {
-        entries[key] = tok;
+        this->(*entries)[key] = tok;
       }
     }
   }
@@ -42,5 +42,5 @@ void Server::Config::read(FILE *file) {
  * a specific key
  */
 char *Server::Config::get_value(char *key) {
-  return entries[key];
+  return this->(*entries)[key];
 }

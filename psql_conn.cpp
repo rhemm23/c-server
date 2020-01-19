@@ -6,8 +6,8 @@
  */
 int Server::PSQLConnection::execute_sql(char *sql) {
   try {
-    pqxx::work transaction(raw_conn);
-    transaction.exec(sql);  
+    pqxx::work transaction(*this->conn);
+    transaction.exec(sql);
     transaction.commit();
     return 0;
   } catch(const std::exception &e) {
@@ -19,7 +19,7 @@ int Server::PSQLConnection::execute_sql(char *sql) {
 /**
  * Creates a new postgresql connection instance
  */
-Server::PSQLConnection::PSQLConnection(pqxx::connection conn, Server::DbConnectionConfig *config) {
+Server::PSQLConnection::PSQLConnection(pqxx::connection *conn, Server::DbConnectionConfig *config) {
   this->config = config;
-  this->raw_conn = conn;
+  this->conn = conn;
 }
